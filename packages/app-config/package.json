@@ -1,0 +1,13 @@
+{
+	"name": "@pomo/config",
+	"version": "0.0.0",
+	"private": true,
+	"main": "./index.js",
+	"files": [
+		"./postcss.config.js",
+		"./tailwind.config.js"
+	],
+	"publishConfig": {
+		"access": "public"
+	}
+}
