@@ -4,7 +4,7 @@ import HelloWorld from './components/HelloWorld.vue'
 
 <template>
 	<div>
-		<h1 class="text-red-400 bg-red-400">123131</h1>
+		<h1 class="bg-blue-900">123131</h1>
 		<a
 			href="https://vitejs.dev"
 			target="_blank"
