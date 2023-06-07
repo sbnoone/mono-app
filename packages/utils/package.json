@@ -1,0 +1,16 @@
+{
+	"name": "@pomo/utils",
+	"private": true,
+	"version": "0.0.0",
+	"type": "module",
+	"main": "./index.ts",
+	"types": "./index.ts",
+	"dependencies": {
+		"dayjs": "^1.11.7"
+	},
+	"devDependencies": {
+		"eslint-config-custom": "workspace:*",
+		"tsconfig": "workspace:*",
+		"typescript": "^4.5.2"
+	}
+}

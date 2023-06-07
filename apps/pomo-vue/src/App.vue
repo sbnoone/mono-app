@@ -5,16 +5,19 @@ import PlaySvg from '@pomo/assets/icons/ph_play-fill.svg'
 import PauseSvg from '@pomo/assets/icons/ph_pause-fill.svg'
 import ForwardSvg from '@pomo/assets/icons/ph_fast-forward-fill.svg'
 
+import Timer from './components/Timer.vue'
 import Chip from './components/Chip.vue'
 import AppButton from './components/AppButton.vue'
 import { TIMER_STATES } from './app-constants'
-// import { TimerState } from './types'
 
 const isPlaying = ref(false)
 const state = ref(0)
 
 const toggleTimer = () => {
 	isPlaying.value = !isPlaying.value
+}
+const onTimerComplete = () => {
+	isPlaying.value = false
 }
 const openModal = () => {}
 const changeState = () => {}
@@ -31,11 +34,11 @@ const changeState = () => {}
 		<div className="max-w-[340px] px-[10px] m-auto flex-grow">
 			<div className="flex items-center flex-col gap-y-3 md:gap-y-8">
 				<Chip :variant="TIMER_STATES[state]" />
-				<!-- <Timer
-					onComplete="{onTimerComplete}"
-					isPlaying="{isPlaying}"
-					initialTimeInSeconds="{initialTimeInSeconds}"
-				/> -->
+				<Timer
+					:onComplete="onTimerComplete"
+					:isPlaying="isPlaying"
+					:initialTimeInSeconds="10"
+				/>
 				<div className="flex items-center gap-x-2 xs:gap-x-4">
 					<AppButton
 						size="md"
