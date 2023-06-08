@@ -33,6 +33,7 @@ const decrement = () => {
 		class="flex border-[1px] h-10 border-black-100 dark:border-white-100 rounded-sm overflow-hidden max-w-[96px] w-full"
 	>
 		<input
+			v-bind="$attrs"
 			:value="modelValue.toString()"
 			@input="emitValue"
 			type="number"

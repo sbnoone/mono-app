@@ -9,7 +9,7 @@ import Timer from './components/Timer.vue'
 import Chip from './components/Chip.vue'
 import AppButton from './components/AppButton.vue'
 import { TIMER_STATES } from './app-constants'
-import InputNumber from './components/InputNumber.vue'
+import SettingsModal from './components/SettingsModal.vue'
 
 const isPlaying = ref(false)
 const state = ref(0)
@@ -20,21 +20,19 @@ const toggleTimer = () => {
 const onTimerComplete = () => {
 	isPlaying.value = false
 }
-const openModal = () => {}
 const changeState = () => {}
 
-const inputValue = ref(30)
+const isOpen = ref(false)
+const openModal = () => {
+	isOpen.value = true
+}
 </script>
 
 <template>
 	<div
 		className="h-full flex bg-primary-50 dark:bg-primary-950 text-primary-900 dark:text-primary-50 overflow-hidden"
 	>
-		<InputNumber v-model="inputValue" />
-		<!-- <SettingsModal
-				closeModal={closeModal}
-				isOpen={isModalOpen}
-			/> -->
+		<SettingsModal :isOpen="isOpen" />
 		<div className="max-w-[340px] px-[10px] m-auto flex-grow">
 			<div className="flex items-center flex-col gap-y-3 md:gap-y-8">
 				<Chip :variant="TIMER_STATES[state]" />

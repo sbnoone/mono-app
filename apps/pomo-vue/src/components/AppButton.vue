@@ -3,10 +3,12 @@ defineProps<{
 	size: 'sm' | 'md' | 'lg'
 	variant: 'primary' | 'secondary' | 'transparent'
 }>()
+defineEmits(['click'])
 </script>
 
 <template>
 	<button
+		@click="$emit('click')"
 		type="button"
 		class="text-primary-900 dark:text-primary-50 dark:[&>svg_path]:stroke-primary-50 dark:[&>svg_path]:fill-primary-50 transition-colors"
 		:class="{
