@@ -1,29 +1,62 @@
 <script setup lang="ts">
 import { toRefs } from 'vue'
-import { Switch as HeadlessSwitch } from '@headlessui/vue'
+import TriangleSvg from '@pomo/assets/icons/ph_triangle.svg'
+import { MAX_TIME_IN_SECONDS, MIN_TIME_IN_SECONDS } from '../app-constants'
 
-const { checked, onChange } = toRefs(
-	defineProps<{ checked: boolean; onChange: (value: boolean) => void }>()
-)
+const props = defineProps<{ modelValue: number }>()
+
+const { modelValue } = toRefs(props)
+
+const emit = defineEmits<{ (e: 'update:modelValue', value: number): void }>()
+
+const emitValue = (event: Event) => {
+	emit('update:modelValue', parseFloat((event.target as HTMLInputElement).value))
+}
+
+const increment = () => {
+	emit(
+		'update:modelValue',
+		modelValue.value < MAX_TIME_IN_SECONDS ? modelValue.value + 1 : MAX_TIME_IN_SECONDS
+	)
+}
+
+const decrement = () => {
+	emit(
+		'update:modelValue',
+		modelValue.value > MIN_TIME_IN_SECONDS ? modelValue.value - 1 : MIN_TIME_IN_SECONDS
+	)
+}
 </script>
 
 <template>
-	<HeadlessSwitch
-		:checked="checked"
-		:onChange="onChange"
-		class="relative inline-flex h-5 w-[34px] items-center rounded-full"
-		:class="{
-			'bg-black-200 dark:bg-white-200': !checked,
-			'bg-primary-a-600': checked,
-		}"
+	<div
+		class="flex border-[1px] h-10 border-black-100 dark:border-white-100 rounded-sm overflow-hidden max-w-[96px] w-full"
 	>
-		<span className="sr-only">Toggle dark mode</span>
-		<span
-			class="inline-block h-4 w-4 transform rounded-full bg-primary-50 dark:bg-primary-900 transition"
-			:class="{
-				'translate-x-0.5': !checked,
-				'translate-x-4': checked,
-			}"
+		<input
+			:value="modelValue.toString()"
+			@input="emitValue"
+			type="number"
+			class="h-10 bg-transparent border-none max-w-[66px] flex-1 text-center outline-none px-1 tracking-[0.15px]"
 		/>
-	</HeadlessSwitch>
+		<div class="border-l-[1px] border-l-black-100 dark:border-l-white-100">
+			<button
+				@click="increment"
+				type="button"
+				class="flex justify-center items-center w-[30px] h-[19px] -outline-offset-2"
+			>
+				<TriangleSvg
+					class="stroke-blue-900 dark:stroke-blue-50 fill-blue-900 dark:fill-blue-50 [&_path]:fill-blue-900 [&_path]:dark:fill-blue-50"
+				/>
+			</button>
+			<button
+				@click="decrement"
+				type="button"
+				class="flex justify-center items-center w-[30px] h-[19px] border-t-[1px] border-t-black-100 dark:border-t-white-100 -outline-offset-2"
+			>
+				<TriangleSvg
+					class="stroke-blue-900 dark:stroke-blue-50 fill-blue-900 dark:fill-blue-50 [&_path]:fill-blue-900 [&_path]:dark:fill-blue-50 rotate-180"
+				/>
+			</button>
+		</div>
+	</div>
 </template>

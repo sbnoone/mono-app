@@ -9,6 +9,7 @@ import Timer from './components/Timer.vue'
 import Chip from './components/Chip.vue'
 import AppButton from './components/AppButton.vue'
 import { TIMER_STATES } from './app-constants'
+import InputNumber from './components/InputNumber.vue'
 
 const isPlaying = ref(false)
 const state = ref(0)
@@ -21,12 +22,15 @@ const onTimerComplete = () => {
 }
 const openModal = () => {}
 const changeState = () => {}
+
+const inputValue = ref(30)
 </script>
 
 <template>
 	<div
 		className="h-full flex bg-primary-50 dark:bg-primary-950 text-primary-900 dark:text-primary-50 overflow-hidden"
 	>
+		<InputNumber v-model="inputValue" />
 		<!-- <SettingsModal
 				closeModal={closeModal}
 				isOpen={isModalOpen}
