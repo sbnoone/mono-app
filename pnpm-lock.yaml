@@ -55,6 +55,7 @@ importers:
 
   apps/pomo-vue:
     specifiers:
+      '@headlessui/vue': ^1.7.14
       '@pomo/assets': '*'
       '@pomo/config': '*'
       '@pomo/utils': '*'
@@ -73,6 +74,7 @@ importers:
       '@pomo/utils': link:../../packages/utils
       vue: 3.3.4
     devDependencies:
+      '@headlessui/vue': 1.7.14_vue@3.3.4
       '@vitejs/plugin-vue': 4.2.3_vite@4.3.9+vue@3.3.4
       autoprefixer: 10.4.14_postcss@8.4.24
       postcss: 8.4.24
@@ -642,6 +644,15 @@ packages:
   /@eslint/js/8.42.0:
     resolution: {integrity: sha512-6SWlXpWU5AvId8Ac7zjzmIOqMOba/JWY8XZ4A7q7Gn1Vlfg/SFFIlrtHXt9nPn4op9ZPAkl91Jao+QQv3r/ukw==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+
+  /@headlessui/vue/1.7.14_vue@3.3.4:
+    resolution: {integrity: sha512-aL9U9Sa7wdOzlrfjx6EjMIYNRCma5mngWcWzQBcHFwznpRZ8g/QZ/AYFtRDrZZUw22Ttttja4D7ZRXFwhONewA==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      vue: ^3.2.0
+    dependencies:
+      vue: 3.3.4
+    dev: true
 
   /@humanwhocodes/config-array/0.11.10:
     resolution: {integrity: sha512-KVVjQmNUepDVGXNuoRRdmmEjruj0KfiGSbS8LVc12LMsWDQzRXJ0qdhN8L8uUigKpfEHRhlaQFY0ib1tnUbNeQ==}
