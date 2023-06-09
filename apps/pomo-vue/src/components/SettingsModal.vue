@@ -1,36 +1,29 @@
 <script setup lang="ts">
 import { TransitionRoot, TransitionChild, Dialog, DialogPanel, DialogTitle } from '@headlessui/vue'
-import { toRefs, ref } from 'vue'
+import { inject } from 'vue'
 import { MAX_TIME_IN_SECONDS, MIN_TIME_IN_SECONDS } from '../app-constants'
+import { Settings } from '../types'
 import AppButton from './AppButton.vue'
 import InputNumber from './InputNumber.vue'
 import Switch from './Switch.vue'
 import XSvg from '@pomo/assets/icons/ph_x.svg'
-// import XSvg from '@pomo/assets/icons/ph_coffee.svg'
+
+const settings = inject<Settings>('settings')!
 
 const props = defineProps<{ isOpen: boolean }>()
 
-const { isOpen } = toRefs(props)
-
-function setIsOpen(value: boolean) {
-	isOpen.value = value
-}
-
-const focusLength = ref(30)
-const shortBreakLength = ref(5)
-const longBreakLength = ref(15)
-const hasNotifications = ref(false)
-const darkmode = ref(false)
+const emit = defineEmits(['close'])
+const emitClose = () => emit('close')
 </script>
 
 <template>
 	<TransitionRoot
 		appear
-		:show="isOpen"
+		:show="props.isOpen"
 		as="div"
 	>
 		<Dialog
-			@close="setIsOpen"
+			@close="emitClose"
 			class="relative z-50 text-primary-900 dark:text-primary-50"
 		>
 			<TransitionChild
@@ -50,7 +43,7 @@ const darkmode = ref(false)
 						<AppButton
 							size="sm"
 							variant="transparent"
-							@click="setIsOpen(false)"
+							@click="emitClose"
 						>
 							<XSvg class="w-[18px] h-[18px]" />
 						</AppButton>
@@ -59,13 +52,13 @@ const darkmode = ref(false)
 					<ul class="flex flex-col pb-4">
 						<li class="px-6 h-16 flex justify-between items-center">
 							<p>Dark mode</p>
-							<Switch v-model:enabled="darkmode" />
+							<Switch v-model:enabled="settings.darkmode" />
 						</li>
 						<li class="px-6 h-16 flex justify-between items-center">
 							<p>Focus length (s)</p>
 							<InputNumber
 								step="1"
-								v-model="focusLength"
+								v-model="settings.focusLength"
 								:min="MIN_TIME_IN_SECONDS"
 								:max="MAX_TIME_IN_SECONDS"
 							/>
@@ -74,7 +67,7 @@ const darkmode = ref(false)
 							<p>Short break length (s)</p>
 							<InputNumber
 								step="1"
-								v-model="shortBreakLength"
+								v-model="settings.shortBreakLength"
 								:min="MIN_TIME_IN_SECONDS"
 								:max="MAX_TIME_IN_SECONDS"
 							/>
@@ -83,19 +76,19 @@ const darkmode = ref(false)
 							<p>Long break length (s)</p>
 							<InputNumber
 								step="1"
-								v-model="longBreakLength"
+								v-model="settings.longBreakLength"
 								:min="MIN_TIME_IN_SECONDS"
 								:max="MAX_TIME_IN_SECONDS"
 							/>
 						</li>
 						<li class="px-6 h-16 flex justify-between items-center">
 							<p>Notifications</p>
-							<Switch v-model:enabled="hasNotifications" />
+							<Switch v-model:enabled="settings.hasNotifications" />
 						</li>
 
 						<li class="px-6 h-16 flex justify-between items-center">
 							<p>Color palette</p>
-							<ColorPaletteRadioGroup />
+							<!-- <ColorPaletteRadioGroup /> -->
 						</li>
 					</ul>
 				</DialogPanel>

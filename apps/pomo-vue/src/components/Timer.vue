@@ -7,6 +7,13 @@ const props = defineProps<{
 	onComplete?: () => void
 }>()
 
+watch(
+	() => props.initialTimeInSeconds,
+	(t) => {
+		timerTime.value = t
+	}
+)
+
 let currentTime = secondsToMs(props.initialTimeInSeconds)
 let previousTime = currentTime
 const timerTime = ref<number>(props.initialTimeInSeconds)
