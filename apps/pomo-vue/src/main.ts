@@ -1,4 +1,4 @@
-import { createApp, reactive } from 'vue'
+import { createApp, reactive, watch } from 'vue'
 import './style.css'
 import App from './App.vue'
 import { Settings } from './types'
@@ -16,6 +16,17 @@ const settings = reactive<Settings>({
 	hasNotifications: false,
 	darkmode: false,
 })
+
+watch(
+	() => settings.darkmode,
+	(isDarkMode) => {
+		if (isDarkMode) {
+			document.documentElement.classList.add('dark')
+		} else {
+			document.documentElement.classList.remove('dark')
+		}
+	}
+)
 
 // watch(s, (value) => console.log(value))
 

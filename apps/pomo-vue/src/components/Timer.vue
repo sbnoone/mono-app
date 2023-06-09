@@ -7,16 +7,18 @@ const props = defineProps<{
 	onComplete?: () => void
 }>()
 
+let currentTime = secondsToMs(props.initialTimeInSeconds)
+let previousTime = currentTime
+const timerTime = ref<number>(props.initialTimeInSeconds)
+
 watch(
 	() => props.initialTimeInSeconds,
 	(t) => {
 		timerTime.value = t
+		currentTime = secondsToMs(props.initialTimeInSeconds)
+		previousTime = currentTime
 	}
 )
-
-let currentTime = secondsToMs(props.initialTimeInSeconds)
-let previousTime = currentTime
-const timerTime = ref<number>(props.initialTimeInSeconds)
 
 const time = computed(() => {
 	const [min, sec] = formatSecondsToMinSec(timerTime.value)
