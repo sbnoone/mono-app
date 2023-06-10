@@ -5,18 +5,18 @@ import App from './App.vue'
 import { Settings } from './types'
 import 'vue-toastification/dist/index.css'
 
-// const focusLength = ref(30)
-// const shortBreakLength = ref(5)
-// const longBreakLength = ref(15)
-// const hasNotifications = ref(false)
-// const darkmode = ref(false)
+const initialSettings = JSON.parse(localStorage.getItem('settings') || '{}') as Settings
 
 const settings = reactive<Settings>({
-	focusLength: 30,
-	shortBreakLength: 5,
-	longBreakLength: 15,
-	hasNotifications: true,
-	darkmode: true,
+	focusLength: initialSettings?.focusLength || 30,
+	shortBreakLength: initialSettings?.shortBreakLength || 5,
+	longBreakLength: initialSettings?.longBreakLength || 15,
+	hasNotifications: !!initialSettings?.hasNotifications,
+	darkmode: !!initialSettings?.darkmode,
+})
+
+watch(settings, (newSettings) => {
+	localStorage.setItem('settings', JSON.stringify(newSettings))
 })
 
 watch(
@@ -32,8 +32,6 @@ watch(
 		immediate: true,
 	}
 )
-
-// watch(s, (value) => console.log(value))
 
 const options: ToastOptions = {
 	position: POSITION.TOP_RIGHT,

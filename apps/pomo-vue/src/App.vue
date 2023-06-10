@@ -45,12 +45,12 @@ const closeModal = () => {
 	isOpen.value = false
 }
 
-const initialTimes: Record<TimerState, number> = {
+const initialTimes = computed<Record<TimerState, number>>(() => ({
 	focus: settings.focusLength,
 	'break-long': settings.longBreakLength,
 	'break-short': settings.shortBreakLength,
-}
-const initialTimeInSeconds = computed(() => initialTimes[TIMER_STATES[state.value]])
+}))
+const initialTimeInSeconds = computed(() => initialTimes.value[TIMER_STATES[state.value]])
 </script>
 
 <template>
