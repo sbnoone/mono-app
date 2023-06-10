@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { inject, ref, computed } from 'vue'
+import { useToast } from 'vue-toastification'
 import DotsSvg from '@pomo/assets/icons/ph_dots-three-outline-fill.svg'
 import PlaySvg from '@pomo/assets/icons/ph_play-fill.svg'
 import PauseSvg from '@pomo/assets/icons/ph_pause-fill.svg'
@@ -8,9 +9,11 @@ import ForwardSvg from '@pomo/assets/icons/ph_fast-forward-fill.svg'
 import Timer from './components/Timer.vue'
 import Chip from './components/Chip.vue'
 import AppButton from './components/AppButton.vue'
-import { TIMER_STATES } from './app-constants'
+import { TIMER_STATES, NOTIFICATION_MESSAGES } from './app-constants'
 import SettingsModal from './components/SettingsModal.vue'
 import { Settings, TimerState } from './types'
+
+const toast = useToast()
 
 const settings = inject<Settings>('settings')!
 const state = ref(0)
@@ -20,6 +23,10 @@ const changeState = () => {
 	isPlaying.value = false
 	const nextState = (state.value + 1) % TIMER_STATES.length
 	state.value = nextState
+
+	if (settings.hasNotifications) {
+		toast.success(`Current state - ${NOTIFICATION_MESSAGES[TIMER_STATES[state.value]]}`)
+	}
 	// appdb.put('state', nextState, 'state').catch(noop)
 }
 
