@@ -15,6 +15,9 @@ const toggle = (value: boolean) => {
 
 <template>
 	<HeadlessSwitch
+		v-model="enabled"
+		:value="enabled ? 'on' : 'off'"
+		name="darkmode"
 		v-slot="{ checked: enabled }"
 		@update:modelValue="toggle"
 		class="relative inline-flex h-5 w-[34px] items-center rounded-full"

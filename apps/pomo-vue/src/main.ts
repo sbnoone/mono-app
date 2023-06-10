@@ -16,7 +16,7 @@ const settings = reactive<Settings>({
 	shortBreakLength: 5,
 	longBreakLength: 15,
 	hasNotifications: true,
-	darkmode: false,
+	darkmode: true,
 })
 
 watch(
@@ -27,6 +27,9 @@ watch(
 		} else {
 			document.documentElement.classList.remove('dark')
 		}
+	},
+	{
+		immediate: true,
 	}
 )
 
