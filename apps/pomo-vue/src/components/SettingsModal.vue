@@ -52,7 +52,11 @@ const emitClose = () => emit('close')
 					<ul class="flex flex-col pb-4">
 						<li class="px-6 h-16 flex justify-between items-center">
 							<p>Dark mode</p>
-							<Switch v-model:enabled="settings.darkmode" />
+							<Switch
+								v-model:enabled="settings.darkmode"
+								:value="settings.darkmode ? 'on' : 'off'"
+								name="darkmode"
+							/>
 						</li>
 						<li class="px-6 h-16 flex justify-between items-center">
 							<p>Focus length (s)</p>
@@ -83,7 +87,11 @@ const emitClose = () => emit('close')
 						</li>
 						<li class="px-6 h-16 flex justify-between items-center">
 							<p>Notifications</p>
-							<Switch v-model:enabled="settings.hasNotifications" />
+							<Switch
+								v-model:enabled="settings.hasNotifications"
+								:value="settings.hasNotifications ? 'on' : 'off'"
+								name="darkmode"
+							/>
 						</li>
 
 						<li class="px-6 h-16 flex justify-between items-center">
