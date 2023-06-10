@@ -58,6 +58,7 @@ importers:
       '@headlessui/vue': ^1.7.14
       '@pomo/assets': '*'
       '@pomo/config': '*'
+      '@pomo/constants': '*'
       '@pomo/utils': '*'
       '@vitejs/plugin-vue': ^4.1.0
       autoprefixer: ^10.4.14
@@ -72,6 +73,7 @@ importers:
     dependencies:
       '@pomo/assets': link:../../packages/assets
       '@pomo/config': link:../../packages/app-config
+      '@pomo/constants': link:../../packages/constants
       '@pomo/utils': link:../../packages/utils
       vue: 3.3.4
     devDependencies:
@@ -91,6 +93,16 @@ importers:
 
   packages/assets:
     specifiers: {}
+
+  packages/constants:
+    specifiers:
+      eslint-config-custom: workspace:*
+      tsconfig: workspace:*
+      typescript: ^4.5.2
+    devDependencies:
+      eslint-config-custom: link:../eslint-config-custom
+      tsconfig: link:../tsconfig
+      typescript: 4.9.5
 
   packages/eslint-config-custom:
     specifiers:

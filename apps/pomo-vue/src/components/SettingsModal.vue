@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { TransitionRoot, TransitionChild, Dialog, DialogPanel, DialogTitle } from '@headlessui/vue'
 import { inject } from 'vue'
-import { MAX_TIME_IN_SECONDS, MIN_TIME_IN_SECONDS } from '../app-constants'
+import { MAX_TIME_IN_SECONDS, MIN_TIME_IN_SECONDS } from '@pomo/constants'
 import { Settings } from '../types'
 import AppButton from './AppButton.vue'
 import InputNumber from './InputNumber.vue'

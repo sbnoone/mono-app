@@ -1,16 +1,22 @@
 import { createApp, reactive, watch } from 'vue'
 import Toast, { POSITION, PluginOptions as ToastOptions } from 'vue-toastification'
-import './style.css'
 import App from './App.vue'
+import {
+	DEFAULT_FOCUS_LENGTH_IN_SECONDS,
+	DEFAULT_LONG_BREAK_LENGTH_IN_SECONDS,
+	DEFAULT_SHORT_BREAK_LENGTH_IN_SECONDS,
+	ThemeModeEnum,
+} from '@pomo/constants'
 import { Settings } from './types'
 import 'vue-toastification/dist/index.css'
+import './style.css'
 
 const initialSettings = JSON.parse(localStorage.getItem('settings') || '{}') as Settings
 
 const settings = reactive<Settings>({
-	focusLength: initialSettings?.focusLength || 30,
-	shortBreakLength: initialSettings?.shortBreakLength || 5,
-	longBreakLength: initialSettings?.longBreakLength || 15,
+	focusLength: initialSettings?.focusLength || DEFAULT_FOCUS_LENGTH_IN_SECONDS,
+	shortBreakLength: initialSettings?.shortBreakLength || DEFAULT_SHORT_BREAK_LENGTH_IN_SECONDS,
+	longBreakLength: initialSettings?.longBreakLength || DEFAULT_LONG_BREAK_LENGTH_IN_SECONDS,
 	hasNotifications: !!initialSettings?.hasNotifications,
 	darkmode: !!initialSettings?.darkmode,
 })
@@ -23,9 +29,9 @@ watch(
 	() => settings.darkmode,
 	(isDarkMode) => {
 		if (isDarkMode) {
-			document.documentElement.classList.add('dark')
+			document.documentElement.classList.add(ThemeModeEnum.dark)
 		} else {
-			document.documentElement.classList.remove('dark')
+			document.documentElement.classList.remove(ThemeModeEnum.dark)
 		}
 	},
 	{
@@ -47,6 +53,4 @@ const options: ToastOptions = {
 	closeOnClick: false,
 }
 
-const app = createApp(App).use(Toast, options).provide('settings', settings)
-
-app.mount('#root')
+createApp(App).use(Toast, options).provide('settings', settings).mount('#root')

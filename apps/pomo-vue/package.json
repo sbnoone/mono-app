@@ -12,10 +12,11 @@
 		"@pomo/assets": "*",
 		"@pomo/config": "*",
 		"@pomo/utils": "*",
-		"vue": "^3.2.47"
+		"@pomo/constants": "*",
+		"vue": "^3.2.47",
+		"@headlessui/vue": "^1.7.14"
 	},
 	"devDependencies": {
-		"@headlessui/vue": "^1.7.14",
 		"@vitejs/plugin-vue": "^4.1.0",
 		"autoprefixer": "^10.4.14",
 		"postcss": "^8.4.24",

@@ -1,0 +1,10 @@
+{
+	"extends": "tsconfig/base.json",
+	"include": ["."],
+	"exclude": ["dist", "build", "node_modules"],
+	"compilerOptions": {
+		"lib": ["ES2015", "DOM", "ES2017.Object"],
+		"module": "ESNext",
+		"target": "es6"
+	}
+}

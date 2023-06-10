@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { toRefs } from 'vue'
 import TriangleSvg from '@pomo/assets/icons/ph_triangle.svg'
-import { MAX_TIME_IN_SECONDS, MIN_TIME_IN_SECONDS } from '../app-constants'
+import { MAX_TIME_IN_SECONDS, MIN_TIME_IN_SECONDS } from '@pomo/constants'
 
 const props = defineProps<{ modelValue: number }>()
 

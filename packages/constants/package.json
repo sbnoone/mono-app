@@ -1,0 +1,13 @@
+{
+	"name": "@pomo/constants",
+	"version": "0.0.0",
+	"private": true,
+	"main": "./index.ts",
+	"types": "./index.ts",
+	"type": "module",
+	"devDependencies": {
+		"eslint-config-custom": "workspace:*",
+		"tsconfig": "workspace:*",
+		"typescript": "^4.5.2"
+	}
+}
