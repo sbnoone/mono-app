@@ -1,12 +1,19 @@
+import { Fragment, useState } from 'react'
 import { RadioGroup } from '@headlessui/react'
-import { Fragment } from 'react'
 import clsx from 'clsx'
-
-import { useColorPalette } from '../hooks/use-schema'
 import { ColorsPaletteEnum, colorsPalette } from '@pomo/constants'
 
 export const ColorPaletteRadioGroup = () => {
-	const { colorPalette, changeColorPalette } = useColorPalette()
+	const [colorPalette, setColorPalette] = useState(ColorsPaletteEnum.blue)
+
+	const changeColorPalette = (palette: ColorsPaletteEnum) => {
+		setColorPalette(palette)
+		colorsPalette.forEach((s) => {
+			document.documentElement.classList.remove(s)
+		})
+		document.documentElement.classList.add(palette)
+	}
+
 	return (
 		<RadioGroup
 			value={colorPalette}
