@@ -1,35 +1,104 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { toast } from 'react-hot-toast'
+import { NOTIFICATION_MESSAGES, TIMER_STATES, noop } from '@pomo/constants'
+
+import { ReactComponent as PauseSvg } from '@pomo/assets/icons/ph_pause-fill.svg'
+import { ReactComponent as PlaySvg } from '@pomo/assets/icons/ph_play-fill.svg'
+import { ReactComponent as DotsSvg } from '@pomo/assets/icons/ph_dots-three-outline-fill.svg'
+import { ReactComponent as ForwardSvg } from '@pomo/assets/icons/ph_fast-forward-fill.svg'
+
+import { Chip } from './components/chip'
+import { Button } from './components/button'
+import { Timer } from './components/timer'
+import { SettingsModal } from './components/settings-modal'
+import { initialTimerState, appdb } from './storage/settings'
+import { TimerState } from './types'
+import { useSettings } from './store/settings'
 
 function App() {
-  const [count, setCount] = useState(0)
+	const { focusLength, shortBreakLength, longBreakLength, hasNotifications } = useSettings()
+	const [state, setState] = useState(initialTimerState ?? 0)
+	const [isPlaying, setIsPlaying] = useState(false)
+	const [isModalOpen, setIsModalOpen] = useState(false)
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+	const toggleTimer = () => {
+		setIsPlaying(!isPlaying)
+	}
+
+	const openModal = () => setIsModalOpen(true)
+	const closeModal = () => setIsModalOpen(false)
+
+	const nextStep = () => {
+		setIsPlaying(false)
+		const nextState = (state + 1) % TIMER_STATES.length
+		setState(nextState)
+		appdb.put('state', nextState, 'state').catch(noop)
+	}
+
+	const changeState = () => {
+		nextStep()
+
+		if (hasNotifications) {
+			toast.success(`Current state - ${NOTIFICATION_MESSAGES[TIMER_STATES[state]]}`)
+		}
+	}
+
+	const onTimerComplete = () => {
+		nextStep()
+		toast.success(`${NOTIFICATION_MESSAGES[TIMER_STATES[state]]} timer is complete!`)
+	}
+
+	const initialTimes: Record<TimerState, number> = {
+		focus: focusLength,
+		'break-long': longBreakLength,
+		'break-short': shortBreakLength,
+	}
+	const initialTimeInSeconds = initialTimes[TIMER_STATES[state]]
+
+	return (
+		<div className='h-full flex bg-primary-50 dark:bg-primary-950 text-primary-900 dark:text-primary-50 overflow-hidden'>
+			<SettingsModal
+				closeModal={closeModal}
+				isOpen={isModalOpen}
+			/>
+			<div className='max-w-[340px] px-[10px] m-auto flex-grow'>
+				<div className='flex items-center flex-col gap-y-3 md:gap-y-8'>
+					<Chip variant={TIMER_STATES[state]} />
+					<Timer
+						onComplete={onTimerComplete}
+						isPlaying={isPlaying}
+						initialTimeInSeconds={initialTimeInSeconds}
+					/>
+					<div className='flex items-center gap-x-2 xs:gap-x-4'>
+						<Button
+							size='md'
+							variant='secondary'
+							onClick={openModal}
+						>
+							<span className='sr-only'>settings</span>
+							<DotsSvg />
+						</Button>
+						<Button
+							size='lg'
+							variant='primary'
+							onClick={toggleTimer}
+						>
+							<span className='sr-only'>{isPlaying ? 'pause' : 'play'}</span>
+							{isPlaying ? <PauseSvg /> : <PlaySvg />}
+						</Button>
+						<Button
+							size='md'
+							variant='secondary'
+							onClick={changeState}
+						>
+							<span className='sr-only'>next state</span>
+							<ForwardSvg />
+						</Button>
+					</div>
+				</div>
+			</div>
+		</div>
+	)
 }
 
 export default App
