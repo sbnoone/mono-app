@@ -5,8 +5,9 @@ import { MAX_TIME_IN_SECONDS, MIN_TIME_IN_SECONDS } from '@pomo/constants'
 import { Settings } from '../types'
 import AppButton from './AppButton.vue'
 import InputNumber from './InputNumber.vue'
+import ColorPaletteRadioGroup from './ColorPaletteRadioGroup.vue'
 import Switch from './Switch.vue'
-import XSvg from '@pomo/assets/icons/ph_x.svg'
+import XSvg from '@pomo/assets/icons/ph_x.svg?component'
 
 const settings = inject<Settings>('settings')!
 
@@ -96,7 +97,7 @@ const emitClose = () => emit('close')
 
 						<li class="px-6 h-16 flex justify-between items-center">
 							<p>Color palette</p>
-							<!-- <ColorPaletteRadioGroup /> -->
+							<ColorPaletteRadioGroup />
 						</li>
 					</ul>
 				</DialogPanel>
