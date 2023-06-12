@@ -7,7 +7,7 @@ import AppButton from './AppButton.vue'
 import InputNumber from './InputNumber.vue'
 import ColorPaletteRadioGroup from './ColorPaletteRadioGroup.vue'
 import Switch from './Switch.vue'
-import XSvg from '@pomo/assets/icons/ph_x.svg?component'
+import XSvg from '@pomo/assets/icons/ph_x.svg?skipsvgo' // svgo removes viewBox attr from svg if import without ?skipsvgo suffix
 
 const settings = inject<Settings>('settings')!
 
