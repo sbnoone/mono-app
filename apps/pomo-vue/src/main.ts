@@ -1,5 +1,6 @@
 import { createApp, reactive, watch } from 'vue'
 import Toast, { POSITION, PluginOptions as ToastOptions } from 'vue-toastification'
+import '@pomo/styles/style.css'
 import App from './App.vue'
 import {
 	DEFAULT_FOCUS_LENGTH_IN_SECONDS,
@@ -9,7 +10,6 @@ import {
 } from '@pomo/constants'
 import { Settings } from './types'
 import 'vue-toastification/dist/index.css'
-import './style.css'
 
 const initialSettings = JSON.parse(localStorage.getItem('settings') || '{}') as Settings
 

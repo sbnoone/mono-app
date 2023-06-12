@@ -9,6 +9,7 @@
 		"preview": "vite preview"
 	},
 	"dependencies": {
+		"@pomo/styles": "*",
 		"@pomo/assets": "*",
 		"@pomo/config": "*",
 		"@pomo/utils": "*",

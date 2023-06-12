@@ -22,6 +22,7 @@ importers:
       '@pomo/assets': '*'
       '@pomo/config': '*'
       '@pomo/constants': '*'
+      '@pomo/styles': '*'
       '@pomo/utils': '*'
       '@react-spring/web': ^9.7.2
       '@types/react': ^18.0.37
@@ -50,6 +51,7 @@ importers:
       '@pomo/assets': link:../../packages/assets
       '@pomo/config': link:../../packages/app-config
       '@pomo/constants': link:../../packages/constants
+      '@pomo/styles': link:../../packages/styles
       '@pomo/utils': link:../../packages/utils
       '@react-spring/web': 9.7.2_biqbaboplfbrettd7655fr4n2y
       clsx: 1.2.1
@@ -81,6 +83,7 @@ importers:
       '@pomo/assets': '*'
       '@pomo/config': '*'
       '@pomo/constants': '*'
+      '@pomo/styles': '*'
       '@pomo/utils': '*'
       '@vitejs/plugin-vue': ^4.1.0
       autoprefixer: ^10.4.14
@@ -97,6 +100,7 @@ importers:
       '@pomo/assets': link:../../packages/assets
       '@pomo/config': link:../../packages/app-config
       '@pomo/constants': link:../../packages/constants
+      '@pomo/styles': link:../../packages/styles
       '@pomo/utils': link:../../packages/utils
       vue: 3.3.4
     devDependencies:
@@ -137,6 +141,9 @@ importers:
       eslint-config-prettier: 8.8.0_eslint@8.42.0
       eslint-config-turbo: 1.10.1_eslint@8.42.0
       eslint-plugin-react: 7.28.0_eslint@8.42.0
+
+  packages/styles:
+    specifiers: {}
 
   packages/tsconfig:
     specifiers: {}

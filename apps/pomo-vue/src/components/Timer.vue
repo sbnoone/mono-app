@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, onUnmounted, watch, computed } from 'vue'
 import { secondsToMs, milisecondsToSec, formatSecondsToMinSec } from '@pomo/utils'
+import AnimatedDigits from './AnimatedDigits.vue'
 const props = defineProps<{
 	isPlaying: boolean
 	initialTimeInSeconds: number
@@ -88,26 +89,13 @@ onUnmounted(() => {
 			'font-extrabold': isPlaying,
 		}"
 	>
-		<div class="relative w-[289px] h-[217px]">
-			<div class="absolute h-full flex place-content-center will-change-[transform,opacity]">
-				{{ time.m1 }}
-			</div>
-
-			<div
-				class="absolute right-0 h-full flex place-content-center will-change-[transform,opacity]"
-			>
-				{{ time.m2 }}
-			</div>
-		</div>
-		<div class="relative w-[289px] h-[217px]">
-			<div class="absolute h-full flex place-content-center will-change-[transform,opacity]">
-				{{ time.s1 }}
-			</div>
-			<div
-				class="absolute right-0 h-full flex place-content-center will-change-[transform,opacity]"
-			>
-				{{ time.s2 }}
-			</div>
-		</div>
+		<AnimatedDigits
+			:d1="time.m1"
+			:d2="time.m2"
+		/>
+		<AnimatedDigits
+			:d1="time.s1"
+			:d2="time.s2"
+		/>
 	</div>
 </template>
