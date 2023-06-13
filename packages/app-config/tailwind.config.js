@@ -5,7 +5,7 @@ module.exports = {
 		'../../packages/ui/**/*.{js,ts,jsx,tsx,vue}',
 		'./**/*.{js,ts,jsx,tsx,vue}',
 		'./pages/**/*.{js,ts,jsx,tsx}',
-		'./src/**/*.{vue,ts}',
+		'./src/**/*.{html,vue,ts}',
 		'./index.html',
 	],
 	theme: {
