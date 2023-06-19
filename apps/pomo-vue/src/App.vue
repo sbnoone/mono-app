@@ -61,27 +61,27 @@ const initialTimeInSeconds = computed(() => initialTimes.value[TIMER_STATES[stat
 
 <template>
 	<div
-		className="h-full flex bg-primary-50 dark:bg-primary-950 text-primary-900 dark:text-primary-50 overflow-hidden"
+		class="h-full flex bg-primary-50 dark:bg-primary-950 text-primary-900 dark:text-primary-50 overflow-hidden"
 	>
 		<SettingsModal
 			:isOpen="isOpen"
 			@close="closeModal"
 		/>
-		<div className="max-w-[340px] px-[10px] m-auto flex-grow">
-			<div className="flex items-center flex-col gap-y-3 md:gap-y-8">
+		<div class="max-w-[340px] px-[10px] m-auto flex-grow">
+			<div class="flex items-center flex-col gap-y-3 md:gap-y-8">
 				<Chip :variant="TIMER_STATES[state]" />
 				<Timer
 					:onComplete="onTimerComplete"
 					:isPlaying="isPlaying"
 					:initialTimeInSeconds="initialTimeInSeconds"
 				/>
-				<div className="flex items-center gap-x-2 xs:gap-x-4">
+				<div class="flex items-center gap-x-2 xs:gap-x-4">
 					<AppButton
 						size="md"
 						variant="secondary"
 						@click="openModal"
 					>
-						<span className="sr-only">settings</span>
+						<span class="sr-only">settings</span>
 						<DotsSvg />
 					</AppButton>
 					<AppButton
@@ -97,7 +97,7 @@ const initialTimeInSeconds = computed(() => initialTimes.value[TIMER_STATES[stat
 						variant="secondary"
 						@click="changeState"
 					>
-						<span className="sr-only">next state</span>
+						<span class="sr-only">next state</span>
 						<ForwardSvg />
 					</AppButton>
 				</div>

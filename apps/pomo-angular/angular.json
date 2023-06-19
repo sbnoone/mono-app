@@ -19,7 +19,10 @@
             "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.app.json",
             "assets": ["src/favicon.ico", "src/assets"],
-            "styles": ["src/styles.css", "@pomo/styles/style.css"],
+            "styles": [
+              "src/styles.css",
+              "./node_modules/@pomo/styles/style.css"
+            ],
             "scripts": []
           },
           "configurations": {
