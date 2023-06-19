@@ -8,7 +8,8 @@ import { ChipComponent } from './chip/chip.component'
 import { InputNumberComponent } from './input-number/input-number.component'
 import { SwitchComponent } from './switch/switch.component'
 import { TimerComponent } from './timer/timer.component'
-import { ButtonComponent } from './button/button.component'
+import { ButtonComponent } from './button/button.component';
+import { AnimatedDigitsComponent } from './animated-digits/animated-digits.component'
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { ButtonComponent } from './button/button.component'
     SwitchComponent,
     TimerComponent,
     ButtonComponent,
+    AnimatedDigitsComponent,
   ],
   imports: [BrowserModule, HttpClientModule, AngularSvgIconModule.forRoot()],
   providers: [],

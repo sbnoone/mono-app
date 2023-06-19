@@ -1,1 +1,10 @@
-<p>timer works!</p>
+<div
+  class="text-[256px] flex flex-col leading-[85%] select-none"
+  [ngClass]="{
+			'font-extralight': !isPlaying,
+			'font-extrabold': isPlaying,
+		}"
+>
+  <app-animated-digits></app-animated-digits>
+  <app-animated-digits></app-animated-digits>
+</div>
